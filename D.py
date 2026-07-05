@@ -1,9 +1,14 @@
+"""
+Hi! This is my first Python program - Hope you enjoy it!
+"""
+
+#   Imports
 from PIL import Image
 from PIL import UnidentifiedImageError
 from tkinter import filedialog
 
-#   liste formati
-formati_input = [
+#   Formats_lists
+input_f = [
     ('BMP', '*.bmp'),
     ('DIB', '*.dib'),
     ('GIF', '*.gif'),
@@ -43,7 +48,7 @@ formati_input = [
     ('SUN', '*.ras'),
     ('WAL', '*.wal'),]
 
-formati_output = [
+output_f = [
     ('BMP', '*.bmp'),
     ('GIF', '*.gif'),
     ('ICO', '*.ico'),
@@ -62,43 +67,47 @@ formati_output = [
     ('XBM', '*.xbm'),
     ('PDF', '*.pdf'),]
 
-#   costanti
-hooray = 'hooray'
-non_hooray = 'non hooray'
+#   constants
+success = 'File Converted!'
+FileNotFoundError_const = 'File not converted, File Not Found Error.'
+OSError_IOError_const = 'File not converted, OS/IO Error.'
+UnidentifiedImageError_const = 'File not converted, Unidentified Immage Error.'
+ValueError_const = 'File not converted, Value Error.'
+KeyError_const = 'File not converted, Key Error.'
 
-#   stampo le costanti
+#   constant_print
 def const_print(x):
     print(x)
 
 #   GUI I/O
-def convo():
-    nome_file = filedialog.askopenfilename(
-        title='Convertitore Super Figo',
-        filetypes=formati_input)
-    nuovo_formato = filedialog.asksaveasfilename(
-        title='Convertitore Super Figo',
-        filetypes=formati_output)
-    return nome_file, nuovo_formato
+def GUI_IO():
+    file_name = filedialog.askopenfilename(
+        title='Convert - I/o - matic',
+        filetypes=input_f)
+    new_format = filedialog.asksaveasfilename(
+        title='Convert - i/O - matic',
+        filetypes=output_f)
+    return file_name, new_format
 
-#   Conversione immagini
+#   PILLOW IMG Conversion Engine
 def motore_conversione_pillow(a, b):
     try:
         with Image.open(a) as img:
             img.save(b)
-            const_print(hooray)
+            const_print(success)
     except FileNotFoundError:
-        const_print(non_hooray)
+        const_print(FileNotFoundError_const)
     except (OSError, IOError):
-        const_print(non_hooray)
+        const_print(OSError_IOError_const)
     except UnidentifiedImageError:
-        const_print(non_hooray)
+        const_print(UnidentifiedImageError_const)
     except ValueError:
-        const_print(non_hooray)
+        const_print(ValueError_const)
     except KeyError:
-        const_print(non_hooray)
+        const_print(KeyError_const)
     
 def main():
-    nome_file, nuovo_formato = convo()
-    motore_conversione_pillow(nome_file, nuovo_formato)
+    file_name, new_format = GUI_IO()
+    motore_conversione_pillow(file_name, new_format)
         
 main()
