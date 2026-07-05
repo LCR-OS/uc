@@ -97,10 +97,10 @@ def motore_conversione_pillow(a, b):
             const_print(success)
     except FileNotFoundError:
         const_print(FileNotFoundError_const)
-    except (OSError, IOError):
-        const_print(OSError_IOError_const)
     except UnidentifiedImageError:
         const_print(UnidentifiedImageError_const)
+    except (OSError, IOError):
+        const_print(OSError_IOError_const)
     except ValueError:
         const_print(ValueError_const)
     except KeyError:
