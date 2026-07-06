@@ -1,14 +1,12 @@
 """
 idee IT
-python può trasformare i dizionari in liste di tuple. 
-Aggiungere diversi tipi di costanti. 
+python può trasformare i dizionari in liste di tuple.  
 arricchire const_print()
 Capire come scegliere il motore con tanti file e motori. 
 ragionare su architettura: conv -> scegli motre -> motore converte
 
 ideas EN
 Python can transform dictionaries into lists of tuples.
-Add different types of constants.
 Enrich/Enhance const_print()
 Understand how to choose the engine with many files and engines.
 Think about architecture: conv -> choose engine -> engine converts
@@ -80,14 +78,16 @@ output_f = [
     ('XBM', '*.xbm'),
     ('PDF', '*.pdf'),]
 
-#   constants
-success = 'File Converted!'
-FileNotFoundError_const = 'File not converted, File Not Found Error.'
-OSError_IOError_const = 'File not converted, OS/IO Error.'
-UnidentifiedImageError_const = 'File not converted, Unidentified Immage Error.'
-ValueError_const = 'File not converted, Value Error.'
-KeyError_const = 'File not converted, Key Error.'
-noinput_const = 'File not converted, User interrupt'
+#   First time trying libraries - needed to ask AI how to write line 111 shame on me 
+MESSAGGI = {
+     FileNotFoundError : 'File not converted, File Not Found Error.',
+     OSError : 'File not converted, OS/IO Error.',
+     UnidentifiedImageError : 'File not converted, Unidentified Immage Error.',
+     ValueError : 'File not converted, Value Error.',
+     KeyError : 'File not converted, Key Error.',
+     "success" : 'File converted!'
+
+}
 
 #   constant_print
 def const_print(x):
@@ -107,22 +107,14 @@ def GUI_IO():
 def errors(func, *args, **kwargs):
     try:
         func(*args, **kwargs)
-    except FileNotFoundError:
-        const_print(FileNotFoundError_const)
-    except UnidentifiedImageError:
-        const_print(UnidentifiedImageError_const)
-    except (OSError, IOError):
-        const_print(OSError_IOError_const)
-    except ValueError:
-        const_print(ValueError_const)
-    except KeyError:
-        const_print(KeyError_const)
+    except Exception as e:
+         const_print(MESSAGGI.get(type(e), f"Error {e}")) #    I need to understand it better, it didn't came from myself. 
 
 #   PILLOW IMG Conversion Engine
 def motore_conversione_pillow(a, b):
             with Image.open(a) as img:
                 img.save(b)
-                const_print(success)
+                const_print(MESSAGGI['success'])
       
 def main():
     file_name, new_format = GUI_IO()

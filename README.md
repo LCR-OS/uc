@@ -2,6 +2,35 @@
 
 # Universal Converter
 
+Nome progetto: Universal Converter (UC)
+
+Tecnologie usate: Python, Pillow, Tkinter
+
+Descrizione:
+Universal Converter è un convertitore di file offline e open source. È nato come alternativa ai siti di conversione online ricchi di pubblicità invasive e con possibili problemi di privacy. Attualmente utilizza Pillow come primo motore di conversione per le immagini, ma l'obiettivo è evolverlo in un'applicazione modulare capace di scegliere automaticamente il motore migliore (Pillow, FFmpeg, LibreOffice, ecc.) in base al tipo di conversione richiesta.
+
+File inviati:
+- UniversalConverter.zip
+- README.md
+
+Perché includo archivi/binari:
+L'archivio contiene il codice sorgente del progetto e la struttura completa della repository.
+
+Istruzioni di esecuzione / note di sicurezza:
+Richiede Python 3 e la libreria Pillow (`pip install pillow`). Avviare il file principale del progetto. Il software esegue esclusivamente conversioni locali: nessun file viene inviato a server esterni o servizi online.
+
+Problemi o richieste di feedback:
+Mi interessa ricevere feedback sull'architettura del progetto, sulla qualità del codice Python, sull'organizzazione della repository e su possibili miglioramenti per rendere il progetto facilmente estendibile con nuovi motori di conversione.
+
+Screenshot / immagini:
+(al momento nessuno)
+
+Cosa ho già provato:
+- Separazione tra GUI, motore di conversione e gestione degli errori.
+- Prima organizzazione del codice in funzioni dedicate.
+- Gestione delle eccezioni più comuni.
+- Pianificazione di un'architettura basata su motori di conversione indipendenti.
+
 ## EN
 
 **Free, offline and open-source file converter.**
