@@ -14,7 +14,6 @@ Think about architecture: conv -> choose engine -> engine converts
 from PIL import Image
 from PIL import UnidentifiedImageError
 from tkinter import filedialog
-from pathlib import Path
 
 #   Supported input formats
 INPUT_FORMATS = {
@@ -93,6 +92,8 @@ MESSAGGI = {
 #   constant_print - I want to make it greater!
 def const_print(x):
     print(x)
+    with open('log.log', 'a') as log: # First log logic of my life! 
+         log.write(x + '\n')
 
 #   GUI I/O
 def GUI_IO():
