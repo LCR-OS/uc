@@ -1,11 +1,24 @@
 """
-Hi! This is my first Python program - Hope you enjoy it!
+idee IT
+python può trasformare i dizionari in liste di tuple. 
+Aggiungere diversi tipi di costanti. 
+arricchire const_print()
+Capire come scegliere il motore con tanti file e motori. 
+ragionare su architettura: conv -> scegli motre -> motore converte
+
+ideas EN
+Python can transform dictionaries into lists of tuples.
+Add different types of constants.
+Enrich/Enhance const_print()
+Understand how to choose the engine with many files and engines.
+Think about architecture: conv -> choose engine -> engine converts
 """
 
 #   Imports
 from PIL import Image
 from PIL import UnidentifiedImageError
 from tkinter import filedialog
+from pathlib import Path
 
 #   Formats_lists
 input_f = [
@@ -74,6 +87,7 @@ OSError_IOError_const = 'File not converted, OS/IO Error.'
 UnidentifiedImageError_const = 'File not converted, Unidentified Immage Error.'
 ValueError_const = 'File not converted, Value Error.'
 KeyError_const = 'File not converted, Key Error.'
+noinput_const = 'File not converted, User interrupt'
 
 #   constant_print
 def const_print(x):
@@ -89,12 +103,10 @@ def GUI_IO():
         filetypes=output_f)
     return file_name, new_format
 
-#   PILLOW IMG Conversion Engine
-def motore_conversione_pillow(a, b):
+#   NEW: Errors get handled in their own func - I didn't remember I could write errors(func, *args, **kwargs)
+def errors(func, *args, **kwargs):
     try:
-        with Image.open(a) as img:
-            img.save(b)
-            const_print(success)
+        func(*args, **kwargs)
     except FileNotFoundError:
         const_print(FileNotFoundError_const)
     except UnidentifiedImageError:
@@ -105,9 +117,17 @@ def motore_conversione_pillow(a, b):
         const_print(ValueError_const)
     except KeyError:
         const_print(KeyError_const)
-    
+
+#   PILLOW IMG Conversion Engine
+def motore_conversione_pillow(a, b):
+            with Image.open(a) as img:
+                img.save(b)
+                const_print(success)
+      
 def main():
     file_name, new_format = GUI_IO()
-    motore_conversione_pillow(file_name, new_format)
-        
-main()
+    errors(motore_conversione_pillow, file_name, new_format)
+
+
+if __name__ == '__main__':
+    main()
